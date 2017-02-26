@@ -1,10 +1,12 @@
-# this image is intended to data volume that has the ownership set to 1000:1000 
+# this image is intended to data volume that has the ownership set to 1000:1000
 
 FROM busybox:latest
 
 MAINTAINER Ron Kurr <kurr@jvmguy.com>
 
+RUN mkdir /home/microservice
 RUN mkdir /pipeline
-RUN chown 1000:1000 /pipeline 
+RUN chown 1000:1000 /pipeline
+RUN chown 1000:1000 /home/microservice
 VOLUME /pipeline
-
+VOLUME /home/microservice

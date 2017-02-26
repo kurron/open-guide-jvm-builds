@@ -14,13 +14,10 @@ RUN groupadd --system microservice \
     useradd --uid 1000 \
             --gid microservice \
             --home-dir /home/microservice \
-            --create-home \
             --shell /bin/bash \
-            --comment "Docker image user" microservice && \
-    chown -R microservice:microservice /home/microservice
+            --comment "Docker image user" microservice
 
-# default to being in the user's home directory
-WORKDIR /home/microservice
+# we expect that /home/microservice will be a mounted volume
 
 # Switch to the non-root user
 USER microservice

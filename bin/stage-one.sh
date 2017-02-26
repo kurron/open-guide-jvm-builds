@@ -18,14 +18,15 @@ CMD="docker run --rm \
                 --project-prop major=0 \
                 --project-prop minor=0 \
                 --project-prop patch=$(date +%s) \
-                --project-prop buildDir=/pipeline \
-                --project-dir=/code \
-                --project-cache-dir=//pipeline \
+                --project-prop buildDir=/pipeline/build \
                 --console=plain \
+                --gradle-user-home=/home/microservice \
                 --no-daemon \
                 --no-search-upward \
+                --project-cache-dir=/pipeline/cache \
+                --project-dir=/code \
                 --stacktrace \
-                dependencies"
+                compileGroovy compileTestGroovy"
 
 echo ${CMD}
 ${CMD}
