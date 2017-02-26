@@ -15,7 +15,8 @@ RUN groupadd --system microservice \
             --gid microservice \
             --home-dir /home/microservice \
             --shell /bin/bash \
-            --comment "Docker image user" microservice
+            --comment "Docker image user" microservice && \
+    apt-get --yes install tree         
 
 # we expect that /home/microservice will be a mounted volume
 

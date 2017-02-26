@@ -2,12 +2,13 @@
 
 # run a container that runs the first stage of the pipeline
 CMD="docker run --rm \
+                 --add-host artifactory:192.168.1.89 \
                 --env LANGUAGE=en_US \
                 --env BUILD_DIR=/code/build \
                 --hostname gradle \
                 --interactive \
                 --name gradle \
-                --net host \
+                --net bridge \
                 --tty \
                 --volume $(pwd):/code:ro \
                 --volumes-from pipeline-data:rw \
@@ -26,7 +27,7 @@ CMD="docker run --rm \
                 --project-cache-dir=/pipeline/cache \
                 --project-dir=/code \
                 --stacktrace \
-                compileGroovy compileTestGroovy"
+                classes testClasses"
 
 echo ${CMD}
 ${CMD}
