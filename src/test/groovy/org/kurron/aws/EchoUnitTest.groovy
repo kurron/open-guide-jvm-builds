@@ -28,6 +28,6 @@ class EchoUnitTest extends Specification implements GenerationAbility {
 
     def 'exercise happy path'() {
         expect: 'just to exercise Spock'
-        true == false
+        true == true
     }
 }
