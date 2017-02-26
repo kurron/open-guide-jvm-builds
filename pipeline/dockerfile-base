@@ -1,0 +1,26 @@
+# this image is intended to run JVM builds and should not be used as a production image!
+
+FROM azul/zulu-openjdk:latest
+
+MAINTAINER Ron Kurr <kurr@jvmguy.com>
+
+# Set standard Java environment variables
+ENV JAVA_HOME /usr/lib/jvm/zulu-8-amd64
+ENV JDK_HOME /usr/lib/jvm/zulu-8-amd64
+
+# Create non-root user
+RUN groupadd --system microservice \
+             --gid 1000 && \
+    useradd --uid 1000 \
+            --gid microservice \
+            --home-dir /home/microservice \
+            --create-home \
+            --shell /bin/bash \
+            --comment "Docker image user" microservice && \
+    chown -R microservice:microservice /home/microservice
+
+# default to being in the user's home directory
+WORKDIR /home/microservice
+
+# Switch to the non-root user
+USER microservice
