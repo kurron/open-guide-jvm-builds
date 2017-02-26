@@ -1,0 +1,10 @@
+# this image is intended to data volume that has the ownership set to 1000:1000 
+
+FROM busybox:latest
+
+MAINTAINER Ron Kurr <kurr@jvmguy.com>
+
+RUN mkdir /pipeline
+RUN chown 1000:1000 /pipeline 
+VOLUME /pipeline
+
