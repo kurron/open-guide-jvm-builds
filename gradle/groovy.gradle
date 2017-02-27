@@ -104,13 +104,7 @@ test {
     reports.html.destination =  "$buildDir/reports/unitTests"
 }
 
-task integrationTests( type: Test, dependsOn: ['inboundIntegrationTests', 'outboundIntegrationTests'] ) {
-    group 'Verification'
-    description = 'Runs the both inbound and outbound integration tests.'
-    debug = false
-}
-
-task outboundIntegrationTests( type: Test, dependsOn: test ) {
+task outboundIntegrationTests( type: Test ) {
     group 'Verification'
     description = 'Runs the outbound integration tests.'
     debug = false
@@ -127,7 +121,7 @@ task outboundIntegrationTests( type: Test, dependsOn: test ) {
     if ( springProfilesActive ) { systemProperties['spring.profiles.active'] = springProfilesActive }
 }
 
-task inboundIntegrationTests( type: Test, dependsOn: test ) {
+task inboundIntegrationTests( type: Test ) {
     group 'Verification'
     description = 'Runs the inbound integration tests.'
     debug = false

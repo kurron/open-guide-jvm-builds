@@ -2,7 +2,6 @@ package org.kurron.example.inbound.rest
 
 import cucumber.api.CucumberOptions
 import cucumber.api.junit.Cucumber
-import org.junit.Ignore
 import org.junit.runner.RunWith
 
 /**
@@ -13,7 +12,6 @@ import org.junit.runner.RunWith
         plugin = ['pretty', 'html:build/reports/acceptanceTests'],
         monochrome = true )
 @RunWith( Cucumber )
-@Ignore
 class AcceptanceTests {
     // empty -- the magic happens elsewhere -- this is just a driver
 }
