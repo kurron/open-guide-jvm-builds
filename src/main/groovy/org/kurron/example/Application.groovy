@@ -15,14 +15,9 @@
  */
 package org.kurron.example
 
-import static org.springframework.amqp.core.Binding.DestinationType.QUEUE
 import groovy.util.logging.Slf4j
 import org.aopalliance.aop.Advice
-import org.kurron.example.outbound.amqp.ExtendedRabbitOperations
-import org.kurron.example.outbound.amqp.InMemoryAcknowledgmentManager
-import org.kurron.example.outbound.amqp.MessageInterceptor
-import org.kurron.example.outbound.amqp.RabbitEventGateway
-import org.kurron.example.outbound.amqp.RabbitTemplateDelegate
+import org.kurron.example.outbound.amqp.*
 import org.kurron.example.shared.ApplicationProperties
 import org.kurron.feedback.FeedbackAwareBeanPostProcessor
 import org.springframework.amqp.core.Binding
@@ -39,7 +34,6 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.EnableConfigurationProperties
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient
 import org.springframework.context.annotation.Bean
 import org.springframework.retry.backoff.ExponentialBackOffPolicy
 import org.springframework.retry.backoff.ExponentialRandomBackOffPolicy
@@ -49,13 +43,14 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
+import static org.springframework.amqp.core.Binding.DestinationType.QUEUE
+
 /**
  * The entry point into the system.  Runs as a standalone web server.
  */
 @Slf4j
 @SpringBootApplication
 @EnableConfigurationProperties( ApplicationProperties )
-@EnableDiscoveryClient
 class Application {
 
     static void main( String[] args ) {
