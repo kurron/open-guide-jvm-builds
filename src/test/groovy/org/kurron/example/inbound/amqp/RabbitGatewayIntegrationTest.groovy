@@ -30,11 +30,13 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.IntegrationTest
 import org.springframework.boot.test.SpringApplicationContextLoader
 import org.springframework.test.context.ContextConfiguration
+import spock.lang.Ignore
 import spock.lang.Specification
 
 /**
  * An integration-level test of the RabbitGateway object.
  **/
+@Ignore( 'until we can figure out pre-test dependencies' )
 @Category( InboundIntegrationTest )
 @IntegrationTest
 @ContextConfiguration( classes = [Application, TestConfiguration], loader = SpringApplicationContextLoader )

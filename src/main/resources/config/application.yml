@@ -48,6 +48,7 @@ security:
 
 # app specific properties for the default profile
 example:
+    foo: default
     logging:
         serviceCode: ${name}
         serviceInstance: \${random.int[1,65536]}
