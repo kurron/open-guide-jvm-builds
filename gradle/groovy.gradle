@@ -104,7 +104,13 @@ test {
     reports.html.destination =  "$buildDir/reports/unitTests"
 }
 
-task outboundIntegrationTests( type: Test, dependsOn: build ) {
+task integrationTests( type: Test, dependsOn: ['inboundIntegrationTests', 'outboundIntegrationTests'] ) {
+    group 'Verification'
+    description = 'Runs the both inbound and outbound integration tests.'
+    debug = false
+}
+
+task outboundIntegrationTests( type: Test, dependsOn: test ) {
     group 'Verification'
     description = 'Runs the outbound integration tests.'
     debug = false
@@ -121,9 +127,9 @@ task outboundIntegrationTests( type: Test, dependsOn: build ) {
     if ( springProfilesActive ) { systemProperties['spring.profiles.active'] = springProfilesActive }
 }
 
-task inboundIntegrationTests( type: Test, dependsOn: build ) {
+task inboundIntegrationTests( type: Test, dependsOn: test ) {
     group 'Verification'
-    description = 'Runs the outbound integration tests.'
+    description = 'Runs the inbound integration tests.'
     debug = false
     useJUnit {
         includeCategories 'org.kurron.categories.InboundIntegrationTest'
@@ -137,4 +143,3 @@ task inboundIntegrationTests( type: Test, dependsOn: build ) {
     def springProfilesActive = System.properties['spring.profiles.active']
     if ( springProfilesActive ) { systemProperties['spring.profiles.active'] = springProfilesActive }
 }
-

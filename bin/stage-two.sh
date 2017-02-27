@@ -27,7 +27,7 @@ CMD="docker run --rm \
                 --project-cache-dir=/pipeline/cache \
                 --project-dir=/code \
                 --stacktrace \
-                test"
+                test integrationTests"
 
 echo ${CMD}
 ${CMD}
